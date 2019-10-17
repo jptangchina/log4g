@@ -1,0 +1,5 @@
+[[appender]]
+filename = "/Users/xxx/Desktop/logs/info.log"
+minLevel = "INFO"
+maxLevel = "INFO"
+maxSize = 1
