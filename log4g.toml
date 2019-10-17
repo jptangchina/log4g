@@ -1,5 +1,9 @@
 [[appender]]
-filename = "/Users/xxx/Desktop/logs/info.log"
+filename = "/Users/xxxx/Desktop/logs/info.log"
+maxSize = 1
+maxAge = 1
+maxBackups = 5
+localTime = false
+compress = false
 minLevel = "INFO"
 maxLevel = "INFO"
-maxSize = 1

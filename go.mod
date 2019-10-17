@@ -1,4 +1,4 @@
-module log4g
+module github.com/jptangchina/log4g
 
 go 1.13
 

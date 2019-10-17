@@ -18,10 +18,14 @@ Log4g是一个基于[logrus](https://github.com/sirupsen/logrus)与[lumberjack](
 
 ```toml
 [[appender]]
-filename = "/Users/xxx/Desktop/logs/info.log"
+filename = "/Users/xxxx/Desktop/logs/info.log"
+maxSize = 1
+maxAge = 1
+maxBackups = 5
+localTime = false
+compress = false
 minLevel = "INFO"
 maxLevel = "INFO"
-maxSize = 1
 ```
 
 更多配置可参考`lumberjack`
@@ -34,6 +38,7 @@ maxSize = 1
 package main
 
 import log "github.com/jptangchina/log4g"
+
 func main() {
   log.Info("Test info output")
 }
