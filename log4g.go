@@ -3,6 +3,8 @@ package log4g
 import (
 	"github.com/sirupsen/logrus"
 	"gopkg.in/natefinch/lumberjack.v2"
+	"io"
+	"os"
 )
 
 var loggers map[logrus.Level]*logrus.Logger
@@ -149,6 +151,7 @@ func initLogrusWithDefaultLogger() {
 	for _, level := range logrus.AllLevels {
 		if loggers[level] == nil {
 			loggers[level] = logrus.New()
+			loggers[level].SetOutput(getDefaultOutput(level))
 		}
 	}
 }
@@ -171,6 +174,15 @@ func newLogger(appender *Appender) *lumberjack.Logger {
 		MaxBackups: appender.MaxBackups,
 		LocalTime:  appender.LocalTime,
 		Compress:   appender.Compress,
+	}
+}
+
+func getDefaultOutput(level logrus.Level) io.Writer {
+	switch level {
+	case logrus.PanicLevel, logrus.FatalLevel, logrus.ErrorLevel:
+		return os.Stderr
+	default:
+		return os.Stdout
 	}
 }
 
